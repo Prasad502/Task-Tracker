@@ -1,13 +1,12 @@
 const express = require("express");
 const fs = require("fs");
-const path = require("path");
 const { v4: uuid } = require("uuid");
+const { SPRINT_FILE } = require("../config");
 
 const router = express.Router();
-const FILE = path.join(__dirname, "../data/sprints.json");
 
-const read = () => JSON.parse(fs.readFileSync(FILE));
-const write = data => fs.writeFileSync(FILE, JSON.stringify(data, null, 2));
+const read = () => JSON.parse(fs.readFileSync(SPRINT_FILE));
+const write = data => fs.writeFileSync(SPRINT_FILE, JSON.stringify(data, null, 2));
 
 router.get("/", (_, res) => res.json(read()));
 

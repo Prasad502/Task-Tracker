@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api";
 import useLookups from "../hooks/useLookups";
 
-const API = "http://localhost:4000/tasks";
+const API = "/tasks";
 
 export default function TaskCard({ task, refresh }) {
   const [expanded, setExpanded] = useState(false);
@@ -19,7 +19,7 @@ export default function TaskCard({ task, refresh }) {
   }, [task]);
 
   const updateTask = async (patch) => {
-    await axios.put(`${API}/${task.id}`, patch);
+    await api.put(`${API}/${task.id}`, patch);
     refresh();
   };
 
@@ -171,7 +171,7 @@ export default function TaskCard({ task, refresh }) {
           <button
             className="secondary"
             onClick={() =>
-              axios.delete(`${API}/${task.id}`).then(refresh)
+              api.delete(`${API}/${task.id}`).then(refresh)
             }
           >
             Delete

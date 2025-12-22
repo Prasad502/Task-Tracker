@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 export default function useLookups() {
   const [peopleMap, setPeopleMap] = useState({});
@@ -7,8 +7,8 @@ export default function useLookups() {
 
   useEffect(() => {
     const load = async () => {
-      const peopleRes = await axios.get("http://localhost:4000/people");
-      const sprintRes = await axios.get("http://localhost:4000/sprints");
+      const peopleRes = await api.get("/people");
+      const sprintRes = await api.get("/sprints");
 
       const pMap = {};
       peopleRes.data.forEach(p => {

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api";
 
-const API = "http://localhost:4000/people";
+const API = "/people";
 
 export default function People() {
   const [people, setPeople] = useState([]);
   const [name, setName] = useState("");
 
   const load = async () => {
-    const res = await axios.get(API);
+    const res = await api.get(API);
     setPeople(res.data);
   };
 
@@ -18,13 +18,13 @@ export default function People() {
 
   const addPerson = async () => {
     if (!name.trim()) return;
-    await axios.post(API, { name });
+    await api.post(API, { name });
     setName("");
     load();
   };
 
   const removePerson = async (id) => {
-    await axios.delete(`${API}/${id}`);
+    await api.delete(`${API}/${id}`);
     load();
   };
 

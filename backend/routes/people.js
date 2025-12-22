@@ -1,25 +1,23 @@
 const express = require("express");
 const fs = require("fs");
-const path = require("path");
 const { v4: uuid } = require("uuid");
+const { PEOPLE_FILE, TASK_FILE } = require("../config");
 
 const router = express.Router();
-const PEOPLE = path.join(__dirname, "../data/people.json");
-const TASKS = path.join(__dirname, "../data/tasks.json");
 
 const read = file => JSON.parse(fs.readFileSync(file));
 const write = (file, data) =>
   fs.writeFileSync(file, JSON.stringify(data, null, 2));
 
 router.get("/", (_, res) => {
-  res.json(read(PEOPLE));
+  res.json(read(PEOPLE_FILE));
 });
 
 router.post("/", (req, res) => {
-  const people = read(PEOPLE);
+  const people = read(PEOPLE_FILE);
   const person = { id: uuid(), name: req.body.name };
   people.push(person);
-  write(PEOPLE, people);
+  write(PEOPLE_FILE, people);
   res.status(201).json(person);
 });
 
@@ -27,13 +25,13 @@ router.post("/", (req, res) => {
  * Remove person → unassign their tasks
  */
 router.delete("/:id", (req, res) => {
-  const people = read(PEOPLE).filter(p => p.id !== req.params.id);
-  write(PEOPLE, people);
+  const people = read(PEOPLE_FILE).filter(p => p.id !== req.params.id);
+  write(PEOPLE_FILE, people);
 
-  const tasks = read(TASKS).map(t =>
+  const tasks = read(TASK_FILE).map(t =>
     t.assignee === req.params.id ? { ...t, assignee: null } : t
   );
-  write(TASKS, tasks);
+  write(TASK_FILE, tasks);
 
   res.sendStatus(204);
 });

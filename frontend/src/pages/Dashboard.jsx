@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import TaskCard from "../components/TaskCard";
 import SprintSummary from "../components/SprintSummary";
 import useLookups from "../hooks/useLookups";
 
-const API = "http://localhost:4000/tasks";
+const API = "/tasks";
 const STATUSES = ["New", "In Progress", "Done"];
 
 export default function Dashboard() {
@@ -20,7 +20,7 @@ export default function Dashboard() {
 
   /* -------------------- Load tasks -------------------- */
   const loadTasks = async () => {
-    const res = await axios.get(API);
+    const res = await api.get(API);
     setTasks(res.data);
   };
 
@@ -57,7 +57,7 @@ export default function Dashboard() {
       return;
     }
 
-    await axios.put(`${API}/${draggableId}`, {
+    await api.put(`${API}/${draggableId}`, {
       status: destination.droppableId
     });
 

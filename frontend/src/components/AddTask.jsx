@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../api";
 import { useEffect, useState } from "react";
 
 export default function AddTask({ onAdd }) {
@@ -16,8 +16,8 @@ export default function AddTask({ onAdd }) {
 
   useEffect(() => {
     const load = async () => {
-      const peopleRes = await axios.get("http://localhost:4000/people");
-      const sprintRes = await axios.get("http://localhost:4000/sprints");
+      const peopleRes = await api.get("/people");
+      const sprintRes = await api.get("/sprints");
 
       setPeople(peopleRes.data);
       setSprints(sprintRes.data);
@@ -32,7 +32,7 @@ export default function AddTask({ onAdd }) {
       return;
     }
 
-    await axios.post("http://localhost:4000/tasks", task);
+    await api.post("/tasks", task);
 
     setTask({
       title: "",

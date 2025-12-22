@@ -1,11 +1,10 @@
 const express = require("express");
 const fs = require("fs");
-const path = require("path");
 const { v4: uuid } = require("uuid");
 const { getSprintForDate } = require("../utils/sprint");
+const { TASK_FILE } = require("../config");
 
 const router = express.Router();
-const TASK_FILE = path.join(__dirname, "../data/tasks.json");
 
 const read = () => JSON.parse(fs.readFileSync(TASK_FILE));
 const write = data => fs.writeFileSync(TASK_FILE, JSON.stringify(data, null, 2));
