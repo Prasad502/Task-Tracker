@@ -1,0 +1,347 @@
+/* =========================================================
+   APP LAYOUT
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  background: var(--bg);
+} 
+
+.content {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+
+/* =========================================================
+   SIDEBAR & NAVIGATION
+   ========================================================= */
+
+.sidebar {
+  width: 240px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+}
+
+.nav {
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.nav.active {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: block;
+  opacity: 0.8;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 18px;
+  border: 1px solid var(--border);
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--primary);
+  color: var(--bg);
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--text);
+  margin-left: 10px;
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+input,
+textarea,
+select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 6px;
+  margin-bottom: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+} 
+
+textarea {
+  resize: vertical;
+}
+
+
+/* =========================================================
+   FILTER BAR
+   ========================================================= */
+
+.filters {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.filters > * {
+  min-width: 0;
+}
+
+/* Ensure inputs inside task-meta fit their grid column */
+.task-meta input,
+.task-meta select {
+  width: 100%;
+  max-width: 100%;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   KANBAN GRID
+   ========================================================= */
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.kanban-column {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 12px;
+  min-height: 300px;
+}
+
+.kanban-column h3 {
+  text-align: center;
+  font-size: 15px;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+
+/* Drag visual feedback */
+.kanban-column {
+  transition: background 0.15s ease;
+}
+
+.kanban-column:has(.dragging) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.task:active {
+  cursor: grabbing;
+}
+
+
+
+/* =========================================================
+   TASK CARDS
+   ========================================================= */
+
+.task {
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Compact view */
+.task.compact h4 {
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task.compact .task-expanded,
+.task.compact .task-meta,
+.task.compact .task-actions {
+  display: none;
+}
+
+/* Expanded view */
+.task.expanded h4 {
+  margin-bottom: 6px;
+}
+
+.task.expanded .task-expanded,
+.task.expanded .task-meta,
+.task.expanded .task-actions {
+  display: block;
+}
+
+/* Compact task meta (status + assignee) */
+.task-compact-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.task-compact-meta .assignee {
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-compact-meta .effort {
+  margin-left: auto;
+  font-weight: 500;
+}
+
+.task.compact:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+
+/* =========================================================
+   TASK META (INLINE EDITING)
+   ========================================================= */
+
+.task-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.task-meta label {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.task-meta input,
+.task-meta select {
+  width: 100%;
+  max-width: 100%;
+  font-size: 14px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+[data-theme="dark"] .task.compact:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+
+
+/* Status text colors (subtle) */
+.status.new {
+  color: #00ccff; /* gray */
+}
+
+.status.in-progress {
+  color: #ff6f00; /* muted amber */
+}
+
+.status.done {
+  color: #00ff5e; /* muted green */
+}
+
+
+/* Status dot */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.new {
+  background: #9ca3af; /* gray */
+}
+
+.status-dot.in-progress {
+  background: #f59e0b; /* amber */
+}
+
+.status-dot.done {
+  background: #22c55e; /* green */
+}
+
+.task input,
+.task textarea {
+  font-size: 14px;
+}
+
+.task textarea {
+  min-height: 60px;
+}
