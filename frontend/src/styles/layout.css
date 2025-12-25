@@ -17,7 +17,148 @@
 .content {
   flex: 1;
   padding: 32px;
+  padding-top: 84px; /* reserve more space for larger header */
   overflow-y: auto;
+  position: relative;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0;
+  /* position header so its right inset matches content padding */
+  position: absolute;
+  top: 20px; /* move profile slightly up */
+  right: 0px; /* match .content padding */
+}
+
+/* Ensure page titles sit on the same baseline as the profile */
+.content > h2 {
+  position: absolute;
+  left: 32px; /* match content padding */
+  top: 40px; /* move title down slightly */
+  margin: 0;
+  line-height: 44px; /* match larger avatar height for vertical alignment */
+  z-index: 100;
+}
+
+/* Minor avatar nudge to tighten alignment */
+.avatar {
+  width: 48px; /* increased size */
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transform: translateY(-4px); /* nudge avatar up */
+  font-size: large;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative; /* for dropdown */
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.profile-btn:hover {
+  background: rgba(0,0,0,0.03);
+}
+
+.avatar {
+  width: 48px; /* increased size */
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transform: translateY(-4px); /* nudge avatar up */
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  min-width: 180px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  padding: 8px;
+  z-index: 1200;
+}
+
+.profile-dropdown-item {
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.profile-dropdown-item:hover {
+  background: rgba(0,0,0,0.03);
+}
+
+.profile-dropdown .divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+/* Login page tweaks */
+.login-page {
+  min-height: calc(100vh - 48px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 64px;
+}
+
+.login-page .card {
+  text-align: left;
+}
+
+.password-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.password-toggle:hover {
+  background: rgba(0,0,0,0.04);
 }
 
 

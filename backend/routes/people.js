@@ -10,7 +10,8 @@ const write = (file, data) =>
   fs.writeFileSync(file, JSON.stringify(data, null, 2));
 
 router.get("/", (_, res) => {
-  res.json(read(PEOPLE_FILE));
+  const people = read(PEOPLE_FILE).map(({ passwordHash, ...rest }) => rest);
+  res.json(people);
 });
 
 router.post("/", (req, res) => {
