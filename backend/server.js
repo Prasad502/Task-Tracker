@@ -16,7 +16,16 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'devsecret',
   resave: false,
   saveUninitialized: false,
-  cookie: { httpOnly: true, sameSite: 'lax' }
+  // Refresh cookie expiry on each response so active users stay logged in
+  rolling: true,
+  cookie: {
+    httpOnly: true,
+    sameSite: 'lax',
+    // default to 7 days (in ms); override with SESSION_MAX_AGE env var
+    maxAge: process.env.SESSION_MAX_AGE ? Number(process.env.SESSION_MAX_AGE) : 7 * 24 * 60 * 60 * 1000,
+    // set secure cookies in production (requires HTTPS)
+    secure: process.env.NODE_ENV === 'production'
+  }
 }));
 
 app.use("/auth", authRoutes);
