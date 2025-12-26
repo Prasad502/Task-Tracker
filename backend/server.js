@@ -6,6 +6,7 @@ const taskRoutes = require("./routes/tasks");
 const sprintRoutes = require("./routes/sprints");
 const peopleRoutes = require("./routes/people");
 const authRoutes = require("./routes/auth");
+const chatRoutes = require("./routes/chat");
 const config = require('./config');
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(session({
 }));
 
 app.use("/auth", authRoutes);
+app.use("/chat", chatRoutes);
 app.use("/tasks", taskRoutes);
 app.use("/sprints", sprintRoutes);
 app.use("/people", peopleRoutes);

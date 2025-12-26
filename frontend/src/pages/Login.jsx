@@ -39,11 +39,9 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      <div className="card" style={{ maxWidth: 380, margin: '40px auto' }}>
-        <h2 style={{ marginBottom: 8 }}>Sign in</h2>
-        <p style={{ marginTop: 0, marginBottom: 12, opacity: 0.7 }}>
-          Sign in with your username and password.
-        </p>
+      <div className="card login-card">
+        <h2 className="page-title">Sign in</h2>
+        <p className="page-subtitle">Sign in with your username and password.</p>
         <form onSubmit={submit}>
           <label>Username</label>
           <input value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -66,10 +64,10 @@ export default function Login() {
           </div>
 
           {error && (
-            <div style={{ color: 'red', marginTop: 6 }}>{error}</div>
+            <div className="form-error">{error}</div>
           )}
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <div className="form-actions">
             <button type="submit">Sign in</button>
           </div>
         </form>
