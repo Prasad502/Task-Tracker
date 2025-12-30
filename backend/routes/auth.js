@@ -12,6 +12,7 @@ const write = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 
 // login (or auto-register if username not found)
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
+  console.log('Auth: login attempt', { username, hasPassword: !!password });
   if (!username || !password) return res.status(400).json({ error: 'username and password required' });
 
   const people = read(PEOPLE_FILE);
@@ -19,15 +20,20 @@ router.post('/login', (req, res) => {
   const person = people.find(p => p.username === username);
 
   // Do not auto-register here; reject unknown usernames
-  if (!person) return res.status(401).json({ error: 'invalid credentials' });
+  if (!person) {
+    console.log('Auth: invalid username', username);
+    return res.status(401).json({ error: 'invalid credentials' });
+  }
 
   // verify password
   if (!person.passwordHash || !bcrypt.compareSync(password, person.passwordHash)) {
+    console.log('Auth: invalid password for', username);
     return res.status(401).json({ error: 'invalid credentials' });
   }
 
   // create session
   req.session.userId = person.id;
+  console.log('Auth: successful login for', username);
 
   const { passwordHash, ...safe } = person;
   res.json(safe);
