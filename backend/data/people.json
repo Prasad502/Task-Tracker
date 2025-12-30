@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "id": "bf3bf25f-39bd-4566-bb8e-d7ac35bb6314",
+    "name": "Roadstr",
+    "username": "roadstr",
+    "passwordHash": "$2a$10$MDNfWjb3wJv3tJnwIbDIWuc5Cns2JI5JJaiT1orFkHn41eVUkBbJu",
+    "createdAt": "2025-12-25T18:03:53.872Z"
+  },
+  {
+    "id": "0f756840-76f8-4d5d-989a-1722580b7d02",
+    "name": "Polo",
+    "username": "polo",
+    "passwordHash": "$2a$10$M.WRsa8DZxo4jDcZiN..iuLrFZxeocfG1HjZl.QAO9n/D5OKmGEUu",
+    "createdAt": "2025-12-25T18:03:53.872Z"
+  },
+  {
+    "id": "a0f725a1-5d1f-4d7a-bca8-ae44672fc6ce",
+    "name": "Scarface",
+    "username": "scarface",
+    "passwordHash": "$2a$10$QF4FpRb7bOAG3sY3WPGWEusvxqWse1hG45pV/BMPgyxDNVclGnNla",
+    "createdAt": "2025-12-25T18:03:53.872Z"
+  },
+  {
+    "id": "61c829bd-a959-4ed1-8610-043744e9dc8a",
+    "name": "Marsh",
+    "username": "marsh",
+    "passwordHash": "$2a$10$eaqKvGpo6/tCSogZq2xN6OmmDskHMLkkVt5iG76PiyXyYWBtRpPWi",
+    "createdAt": "2025-12-25T18:03:53.872Z"
+  },
+  {
+    "id": "dfb8786e-c65f-4e90-b3b0-1b54da0735bc",
+    "name": "Manish",
+    "username": "manish",
+    "passwordHash": "$2a$10$rMX08VeYH4wnBYoVN2769edZeEB/5oRn0ag1St/Bj1jcTSmJvsFcK",
+    "createdAt": "2025-12-25T18:03:53.872Z"
+  }
+]

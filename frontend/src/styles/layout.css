@@ -17,7 +17,274 @@
 .content {
   flex: 1;
   padding: 32px;
+  padding-top: 84px; /* reserve more space for larger header */
   overflow-y: auto;
+  position: relative;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0;
+  /* position header so its right inset matches content padding */
+  position: absolute;
+  top: 20px; /* move profile slightly up */
+  right: 0px; /* match .content padding */
+}
+
+/* Ensure page titles sit on the same baseline as the profile */
+.content > h2 {
+  position: absolute;
+  left: 32px; /* match content padding */
+  top: 40px; /* move title down slightly */
+  margin: 0;
+  line-height: 44px; /* match larger avatar height for vertical alignment */
+  z-index: 100;
+}
+
+/* Minor avatar nudge to tighten alignment */
+.avatar {
+  width: 48px; /* increased size */
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transform: translateY(-4px); /* nudge avatar up */
+  font-size: large;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative; /* for dropdown */
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.profile-btn:hover {
+  background: rgba(0,0,0,0.03);
+}
+
+.avatar {
+  width: 48px; /* increased size */
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transform: translateY(-4px); /* nudge avatar up */
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  min-width: 180px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  padding: 8px;
+  z-index: 1200;
+}
+
+.profile-dropdown-item {
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.profile-dropdown-item:hover {
+  background: rgba(0,0,0,0.03);
+}
+
+.profile-dropdown .divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+/* Login page tweaks */
+.login-page {
+  min-height: calc(100vh - 48px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 64px;
+}
+
+.login-page .card {
+  text-align: left;
+}
+
+/* login card small width + spacing */
+.login-card {
+  max-width: 380px;
+  margin: 40px auto;
+}
+
+.login-card .page-title {
+  margin-bottom: 8px;
+}
+
+.login-card .page-subtitle {
+  margin-top: 0;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.form-error {
+  color: red;
+  margin-top: 6px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.password-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+/* Chat styles */
+.chat-card {
+  padding: 12px;
+  max-width: 2000px;
+  width: min(2000px, 100%);
+  margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 180px); /* header + title + input space */
+}
+
+.chat-messages {
+  /* expand to fill available vertical space inside .chat-card */
+  flex: 1 1 auto;
+  min-height: 0; /* allow flex child to scroll correctly */
+  overflow: auto;
+  padding: 8px;
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  background: var(--bg-elev);
+}
+
+.chat-message {
+  margin-bottom: 16px; /* slightly more space between messages */
+}
+
+.chat-meta {
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.2; /* ensures good vertical rhythm */
+}
+
+.chat-meta .chat-ts {
+  margin-left: 8px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.chat-text {
+  margin-top: 8px; /* increased gap between name and message text */
+  word-break: break-word;
+  overflow-wrap: anywhere; /* ensure long links wrap */
+}
+
+/* Make links inside messages look interactive */
+.chat-text a {
+  color: var(--primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.chat-text a:hover {
+  opacity: 0.9;
+}
+.chat-input {
+  display: flex;
+  margin-top: 12px;
+  gap: 8px;
+  align-items: stretch; /* ensure children match heights */
+}
+
+.chat-input input {
+  flex: 1;
+  height: 40px; 
+}
+
+.chat-input button {
+  height: 37px; 
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-2px);
+  
+}
+
+.chat-note {
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+/* Date separator (bubble centered like WhatsApp) */
+.day-sep {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.day-sep span {
+  background: var(--card);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* Reverted custom scrollbar styling so native scrollbars are used and stay inside the chat box */
+/* (removed WebKit and Firefox custom rules to avoid drawing outside the chat element) */
+
+.password-toggle:hover {
+  background: rgba(0,0,0,0.04);
 }
 
 
