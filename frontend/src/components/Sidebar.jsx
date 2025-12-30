@@ -37,6 +37,10 @@ export default function Sidebar() {
         Sprints
       </NavLink>
 
+      <NavLink to="/chat" className="nav">
+        Chat
+      </NavLink>
+
       <div style={{ marginTop: "auto" }}>
         <button className="secondary" onClick={toggleTheme}>
           {theme === "dark" ? "☀ Light Mode" : "🌙 Dark Mode"}
